@@ -15,7 +15,7 @@ class AddAnalyticsEvents extends Migration
     {
         Schema::create('analytics_events', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->string('name')->unique();
         });
     }
 
