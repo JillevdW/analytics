@@ -1,3 +1,3 @@
 <?php
 
-Route::get('/events', 'AnalyticsController@index');
+Route::get('/metrics', 'MetricController@index');

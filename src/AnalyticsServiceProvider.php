@@ -63,7 +63,7 @@ class AnalyticsServiceProvider extends ServiceProvider
     public function register()
     {
         $this->commands([
-            Console\AddAnalyticsEvent::class,
+            Console\AddAppMetric::class,
         ]);
     }
 }

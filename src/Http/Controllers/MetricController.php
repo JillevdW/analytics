@@ -5,13 +5,13 @@ namespace Jvdw\Analytics\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
-use Jvdw\Analytics\Models\AppAnalyticsEvents;
+use Jvdw\Analytics\Models\AppMetric;
 
-class AnalyticsController extends Controller
+class MetricController extends Controller
 {
     
     public function index() {
-        return AppAnalyticsEvents::all();
+        return AppMetric::all();
     }
 
 }
