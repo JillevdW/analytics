@@ -18,7 +18,7 @@ class AddAppAnalyticsEvents extends Migration
             $table->string('device_id');
 
             $table->unsignedBigInteger('event_id');
-            $table->foreign('event_id')->references('id')->on('app_trackable_events');
+            $table->foreign('event_id')->references('id')->on('app_metrics');
 
             $table->timestamps();
         });
