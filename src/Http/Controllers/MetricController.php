@@ -14,4 +14,12 @@ class MetricController extends Controller
         return AppMetric::all();
     }
 
+    public function show($id) {
+        $metric = AppMetric::findOrFail($id);
+        return [
+            "name" => $metric->name,
+            "events" => $metric->events()->get()
+        ];
+    }
+
 }
