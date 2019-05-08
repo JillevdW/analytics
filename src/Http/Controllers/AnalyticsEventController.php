@@ -8,6 +8,8 @@ use Illuminate\Routing\Controller;
 use Jvdw\Analytics\Models\AppAnalyticsEvent;
 use Jvdw\Analytics\Models\AppMetric;
 
+use Carbon\Carbon;
+
 class AnalyticsEventController extends Controller
 {
     
@@ -27,6 +29,30 @@ class AnalyticsEventController extends Controller
         $event->device_id = $values["device_id"];
 
         $metric->events()->save($event);
+    }
+
+    // Gets all events for the given metric between the given timestamps.
+    public function eventCountFor(Request $request) {
+        $values = $request->validate([
+            'metric_name' => 'required|string|max:255',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date'
+        ]);
+        
+        $metric = AppMetric::where('name', $request["metric_name"])->firstOrFail();
+
+        // Gets all events for the given metric that happened between the 00:00 at the start day
+        // up to 23:59 at the end day.
+        $events = $metric->events()->whereBetween('created_at', [
+            Carbon::parse($request["start_date"])->setTime(0, 0, 0),
+            Carbon::parse($request["end_date"])->addDays(1)->setTime(0, 0, 0)
+        ])
+        ->get()
+        ->groupBy(function($date) {
+            return Carbon::parse($date->created_at)->format('Y-m-d');
+        });
+        
+        return $events;
     }
 
 }
