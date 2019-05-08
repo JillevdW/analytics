@@ -1,5 +1,5 @@
 {
-    "name": "jvdw/analytics",
+    "name": "jvdw/app-analytics",
     "description": "A laravel package for mobile app analytics.",
     "type": "library",
     "authors": [
