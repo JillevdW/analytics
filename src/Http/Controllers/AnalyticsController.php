@@ -10,5 +10,8 @@ use Jvdw\Analytics\Models\Analytics;
 class AnalyticsController extends Controller
 {
     
+    public function index() {
+        return Analytics::all();
+    }
 
 }
