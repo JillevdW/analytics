@@ -1,0 +1,18 @@
+{
+    "name": "jvdw/analytics",
+    "description": "A laravel package for mobile app analytics.",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Jille van der Weerd",
+            "email": "jillevdweerd@icloud.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Jvdw\\Analytics\\": "src"
+        }
+    }
+}
