@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddAnalyticsEvents extends Migration
+class AddAppTrackableEvents extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AddAnalyticsEvents extends Migration
      */
     public function up()
     {
-        Schema::create('analytics_events', function (Blueprint $table) {
+        Schema::create('app_trackable_events', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->unique();
         });
@@ -26,6 +26,6 @@ class AddAnalyticsEvents extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('analytics_events');
+        Schema::dropIfExists('app_trackable_events');
     }
 }

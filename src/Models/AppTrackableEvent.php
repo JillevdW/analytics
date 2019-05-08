@@ -4,7 +4,9 @@ namespace Jvdw\Analytics\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Analytics extends Model
+class AppTrackableEvent extends Model
 {
+    public $timestamps = false;
+
     //
 }

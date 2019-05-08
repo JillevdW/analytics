@@ -6,7 +6,7 @@ use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Illuminate\Console\DetectsApplicationNamespace;
 
-use Jvdw\Analytics\Models\AnalyticsEvent;
+use Jvdw\Analytics\Models\AppTrackableEvent;
 
 class AddAnalyticsEvent extends Command
 {
@@ -16,13 +16,13 @@ class AddAnalyticsEvent extends Command
      *
      * @var string
      */
-    protected $signature = 'app-analytics:add {event}';
+    protected $signature = 'app-analytics:trackable {event}';
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Add an analytics event with the given name to your database.';
+    protected $description = 'Adds a new trackable event with the given name to your database.';
     /**
      * Execute the console command.
      *
@@ -30,10 +30,10 @@ class AddAnalyticsEvent extends Command
      */
     public function handle()
     {
-        $this->line("Adding {$this->argument('event')} event...");
-        $event = new AnalyticsEvent;
+        $this->line("Adding {$this->argument('event')} trackable event...");
+        $event = new AppTrackableEvent;
         $event->name = $this->argument('event');
         $event->save();
-        $this->comment("<fg=green>Successfully added {$this->argument('event')} event!</>");
+        $this->comment("<fg=green>Successfully added {$this->argument('event')} trackable event!</>");
     }
 }
