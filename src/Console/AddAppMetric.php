@@ -2,7 +2,6 @@
 
 namespace Jvdw\Analytics\Console;
 
-use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Illuminate\Console\DetectsApplicationNamespace;
 
