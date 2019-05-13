@@ -55,4 +55,28 @@ class AnalyticsEventController extends Controller
         return $events;
     }
 
+    // Counts all events for the given metric between the given timestamps.
+    public function countBetweenDates(Request $request) {
+        $values = $request->validate([
+            'metric_name' => 'required|string|max:255',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date'
+        ]);
+        
+        $metric = AppMetric::where('name', $request["metric_name"])->firstOrFail();
+
+        // Gets all events for the given metric that happened between the 00:00 at the start day
+        // up to 23:59 at the end day.
+        $eventCount = $metric->events()->whereBetween('created_at', [
+            Carbon::parse($request["start_date"])->setTime(0, 0, 0),
+            Carbon::parse($request["end_date"])->addDays(1)->setTime(0, 0, 0)
+        ])
+        ->count();
+        
+        return [
+            'metric' => $metric->name,
+            'events' => $eventCount
+        ];
+    }
+
 }
