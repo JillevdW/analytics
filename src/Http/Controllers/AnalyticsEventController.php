@@ -32,7 +32,7 @@ class AnalyticsEventController extends Controller
     }
 
     // Gets all events for the given metric between the given timestamps.
-    public function eventCountFor(Request $request) {
+    public function getBetweenDates(Request $request) {
         $values = $request->validate([
             'metric_name' => 'required|string|max:255',
             'start_date' => 'required|date',
