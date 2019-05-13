@@ -4,6 +4,7 @@ namespace Jvdw\Analytics;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Database\Eloquent\Factory as EloquentFactory;
 
 class AnalyticsServiceProvider extends ServiceProvider
 {
@@ -54,6 +55,17 @@ class AnalyticsServiceProvider extends ServiceProvider
             'prefix' => 'app-analytics-api'
         ];
     }
+
+    /**
+     * Register factories.
+     *
+     * @param  string  $path
+     * @return void
+     */
+    protected function registerEloquentFactoriesFrom($path)
+    {
+        $this->app->make(EloquentFactory::class)->load($path);
+    }
     
     /**
      * Register any package services.
@@ -65,5 +77,6 @@ class AnalyticsServiceProvider extends ServiceProvider
         $this->commands([
             Console\AddAppMetric::class,
         ]);
+        $this->registerEloquentFactoriesFrom(__DIR__.'/Storage/factories');
     }
 }
