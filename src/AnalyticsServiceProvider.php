@@ -42,6 +42,9 @@ class AnalyticsServiceProvider extends ServiceProvider
         Route::group($this->apiRouteConfiguration(), function() {
             $this->loadRoutesFrom(__DIR__.'/Http/routes/api.php');
         });
+
+        Route::group($this->webRouteConfiguration(), function() {
+            $this->loadRoutesFrom(__DIR__.'/Http/routes/web.php');
         });
     }
 
@@ -59,6 +62,19 @@ class AnalyticsServiceProvider extends ServiceProvider
     }
 
     /**
+     * Get the Analytics route group configuration array for the web routes.
+     *
+     * @return array
+     */
+    private function webRouteConfiguration() {
+        // TODO: Add middleware to this route configuration.
+        return [
+            'namespace' => 'Jvdw\Analytics\Http\Controllers',
+            'prefix' => 'app-analytics'
+        ];
+    }
+
+    /**
      * Register factories.
      *
      * @param  string  $path
@@ -67,6 +83,16 @@ class AnalyticsServiceProvider extends ServiceProvider
     protected function registerEloquentFactoriesFrom($path)
     {
         $this->app->make(EloquentFactory::class)->load($path);
+    }
+
+    /**
+     * Registers the views for the package.
+     *
+     * @return void
+     */
+    protected function registerViews() {
+        // $this->loadViewsFrom(__DIR__.'/resources/views', 'calculator');
+        $this->loadViewsFrom(__DIR__.'/Resources/views', 'app-analytics');
     }
     
     /**

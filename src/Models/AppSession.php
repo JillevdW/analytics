@@ -9,7 +9,9 @@ class AppSession extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'device_id'
+        'device_id',
+        'start_date',
+        'end_date'
     ];
 
     public function events() {

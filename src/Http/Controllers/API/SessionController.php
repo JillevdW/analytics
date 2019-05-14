@@ -29,7 +29,18 @@ class SessionController extends Controller
             'device_id' => 'required|string|max:255',
             'events' => 'required|array'
         ]);
-        $session = AppSession::create($values);
+
+        $startDate = $values['events'][0]['date'];
+        $endDate = end($values['events'])['date'];
+
+        info($startDate);
+        info($endDate);
+
+        $session = AppSession::create([
+            'device_id' => $values['device_id'],
+            'start_date' => $startDate,
+            'end_date' => $endDate
+        ]);
         
         foreach ($values['events'] as $event) {
             $sessionEvent = new AppSessionEvent();

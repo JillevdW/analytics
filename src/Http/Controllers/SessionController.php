@@ -18,8 +18,6 @@ class SessionController extends Controller
     
     public function show($id) {
         $session = AppSession::findOrFail($id);
-        return [
-            "events" => $session->events()->get()
-        ];
+        return view('app-analytics::session.show', compact('session'));
     }
 }

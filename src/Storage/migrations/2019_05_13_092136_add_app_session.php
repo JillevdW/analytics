@@ -16,6 +16,9 @@ class AddAppSession extends Migration
         Schema::create('app_sessions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('device_id');
+
+            $table->dateTime('start_date');
+            $table->dateTime('end_date');
         });
     }
 
