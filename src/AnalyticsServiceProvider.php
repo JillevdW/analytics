@@ -17,6 +17,7 @@ class AnalyticsServiceProvider extends ServiceProvider
     {
         $this->registerMigrations();
         $this->registerRoutes();
+        $this->registerViews();
     }
     
     /**
@@ -38,20 +39,21 @@ class AnalyticsServiceProvider extends ServiceProvider
      */
     private function registerRoutes()
     {
-        Route::group($this->routeConfiguration(), function() {
-            $this->loadRoutesFrom(__DIR__.'/Http/routes.php');
+        Route::group($this->apiRouteConfiguration(), function() {
+            $this->loadRoutesFrom(__DIR__.'/Http/routes/api.php');
+        });
         });
     }
 
     /**
-     * Get the Analytics route group configuration array.
+     * Get the Analytics route group configuration array for the api routes.
      *
      * @return array
      */
-    private function routeConfiguration() {
+    private function apiRouteConfiguration() {
         // TODO: Add middleware to this route configuration.
         return [
-            'namespace' => 'Jvdw\Analytics\Http\Controllers',
+            'namespace' => 'Jvdw\Analytics\Http\Controllers\API',
             'prefix' => 'app-analytics-api'
         ];
     }

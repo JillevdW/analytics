@@ -1,6 +1,6 @@
 <?php
 
-namespace Jvdw\Analytics\Http\Controllers;
+namespace Jvdw\Analytics\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
