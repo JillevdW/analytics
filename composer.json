@@ -14,5 +14,12 @@
         "psr-4": {
             "Jvdw\\Analytics\\": "src"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Jvdw\\Analytics\\AnalyticsServiceProvider"
+            ]
+        }
     }
 }
