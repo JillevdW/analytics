@@ -20,13 +20,17 @@ class AnalyticsEventController extends Controller
     public function store(Request $request) {
         $values = $request->validate([
             'device_id' => 'required|string|max:255',
-            'metric_name' => 'required|string|max:255'
+            'metric_name' => 'required|string|max:255',
+            'properties' => 'array'
         ]);
 
         $metric = AppMetric::where('name', $values['metric_name'])->firstOrFail();
         
         $event = new AppAnalyticsEvent();
         $event->device_id = $values["device_id"];
+        if ($values['properties']) {
+            $event->properties = json_encode($values['properties']);
+        }
 
         $metric->events()->save($event);
     }
