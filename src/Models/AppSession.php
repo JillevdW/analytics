@@ -11,7 +11,8 @@ class AppSession extends Model
     protected $fillable = [
         'device_id',
         'start_date',
-        'end_date'
+        'end_date',
+        'properties'
     ];
 
     public function events() {

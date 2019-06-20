@@ -27,20 +27,24 @@ class SessionController extends Controller
     public function store(Request $request) {
         $values = $request->validate([
             'device_id' => 'required|string|max:255',
-            'events' => 'required|array'
+            'events' => 'required|array',
+            'properties' => 'array'
         ]);
 
         $startDate = $values['events'][0]['date'];
         $endDate = end($values['events'])['date'];
 
-        info($startDate);
-        info($endDate);
-
-        $session = AppSession::create([
+        $obj = [
             'device_id' => $values['device_id'],
             'start_date' => $startDate,
             'end_date' => $endDate
-        ]);
+        ];
+
+        if ($values['properties']) {
+            $obj['properties'] = json_encode($values['properties']);
+        }
+
+        $session = AppSession::create($obj);
         
         foreach ($values['events'] as $event) {
             $sessionEvent = new AppSessionEvent();
