@@ -35,7 +35,15 @@
     .icon {
         font-size: 24px;
         color: lightgray;
+        margin-right: 16px;
     }
+
+    @media only screen and (max-width: 750px) {
+        .menu-item {
+            visibility: collapse;
+        }
+    }
+    
 
     .active {
         color: #2017bb;
@@ -58,22 +66,22 @@
         <div class="row mt-4">
             <div class="col-2 sidebar">
                 <ul class="nav flex-column">
-                    <li class="nav-item nav-link d-flex align-items-center">
-                        <i class="icon ion-md-analytics {{ Request::segment(2) === 'metrics' ? 'active' : null }}"></i>
+                    <li class="nav-item d-flex align-items-center">
                         <a href="{{ route('web.metrics.index') }}" class="nav-link d-flex align-items-center">
-                            <span class="{{ Request::segment(2) === 'metrics' ? 'active' : null }}">Metrics</span>
+                            <i class="icon ion-md-analytics {{ Request::segment(2) === 'metrics' ? 'active' : null }}"></i>
+                            <span class="menu-item {{ Request::segment(2) === 'metrics' ? 'active' : null }}">Metrics</span>
                         </a>
                     </li>
-                    <li class="nav-item nav-link d-flex align-items-center">
-                        <i class="icon ion-md-cube {{ Request::segment(2) === 'sessions' ? 'active' : null }}"></i>
+                    <li class="nav-item d-flex align-items-center">
                         <a href="{{ route('web.sessions.index') }}" class="nav-link d-flex align-items-center">
-                            <span class="{{ Request::segment(2) === 'sessions' ? 'active' : null }}">Sessions</span>
+                            <i class="icon ion-md-cube {{ Request::segment(2) === 'sessions' ? 'active' : null }}"></i>
+                            <span class="menu-item {{ Request::segment(2) === 'sessions' ? 'active' : null }}">Sessions</span>
                         </a>
                     </li>
-                    <li class="nav-item nav-link d-flex align-items-center  mb-3">
-                        <i class="icon ion-md-analytics {{ Request::segment(2) === 'events' ? 'active' : null }}"></i>
+                    <li class="nav-item d-flex align-items-center  mb-3">
                         <a href="{{ route('web.events.index') }}" class="nav-link d-flex align-items-center">
-                            <span class="{{ Request::segment(2) === 'events' ? 'active' : null }}">Events</span>
+                            <i class="icon ion-md-analytics {{ Request::segment(2) === 'events' ? 'active' : null }}"></i>
+                            <span class="menu-item {{ Request::segment(2) === 'events' ? 'active' : null }}">Events</span>
                         </a>
                     </li>
                     {{-- @foreach (Jvdw\Analytics\Models\AppMetric::all() as $metric)
