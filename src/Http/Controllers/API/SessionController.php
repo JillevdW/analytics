@@ -31,6 +31,8 @@ class SessionController extends Controller
             'properties' => 'array'
         ]);
 
+        info($values);
+
         $startDate = $values['events'][0]['date'];
         $endDate = end($values['events'])['date'];
 
@@ -40,7 +42,7 @@ class SessionController extends Controller
             'end_date' => $endDate
         ];
 
-        if (isset($values['properties'])) {
+        if (isset($values['properties']) && $values['properties']) {
             $obj['properties'] = json_encode($values['properties']);
         }
 
