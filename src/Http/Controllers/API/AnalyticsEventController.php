@@ -28,7 +28,7 @@ class AnalyticsEventController extends Controller
         
         $event = new AppAnalyticsEvent();
         $event->device_id = $values["device_id"];
-        if ($values['properties']) {
+        if (isset($values['properties'])) {
             $event->properties = json_encode($values['properties']);
         }
 

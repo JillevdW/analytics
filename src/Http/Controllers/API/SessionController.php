@@ -40,7 +40,7 @@ class SessionController extends Controller
             'end_date' => $endDate
         ];
 
-        if ($values['properties']) {
+        if (isset($values['properties'])) {
             $obj['properties'] = json_encode($values['properties']);
         }
 
