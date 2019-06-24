@@ -12,7 +12,7 @@ class SessionController extends Controller
 {
 
     public function index() {
-        $sessions = AppSession::all();
+        $sessions = AppSession::orderBy('start_date', 'desc')->get();
         return view('app-analytics::session.index', compact('sessions'));
     }
     
